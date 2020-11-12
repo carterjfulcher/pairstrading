@@ -1,0 +1,19 @@
+===== PAIRS TRADING =====
+
+- What is pairs trading? 
+
+
+STRATEGY OVERVIEW
+-----
+1. Find stocks with high correlation 
+2. Wait for correlation to decrease 
+3. Go long on the "cheap" equity 
+4. Go short on the "expensive" equity 
+
+
+
+GOALS 
+-----
+1. Write basic backtesting
+2. Analyze common performance metrics
+3. Deploy to simulated trading
