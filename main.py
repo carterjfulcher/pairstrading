@@ -4,16 +4,10 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt 
 
-
-
 stocks = ('CVX', 'MPC')
-
-
 
 with open('key.txt', 'r') as f:  #requires Alpha Vantage API key
     KEY = f.readlines()[0]
-
-
 
 #gets historical data
 def get_historical_data(ticker, data_slice: str, interval: str) -> pd.DataFrame:
@@ -28,20 +22,11 @@ def get_historical_data(ticker, data_slice: str, interval: str) -> pd.DataFrame:
 
     return df
 
-
 #data cleaning
-
 df1 = get_historical_data(stocks[0], 'year2month11', '1min')
 df2 = get_historical_data(stocks[1], 'year2month11', '1min')
-
-
 df1.reset_index(inplace=True)
 df2.reset_index(inplace=True)
-
-
-
-#df1 = pd.read_csv(f"{stocks[0]}_data.csv")
-#df2 = pd.read_csv(f"{stocks[1]}_data.csv")
 
 df1['4. close'] = pd.to_numeric(df1['4. close'])
 df2['4. close'] = pd.to_numeric(df2['4. close'])
@@ -131,8 +116,6 @@ class Bot:
             self.value.append(current_value)
 
             #print(current_value, signal, self.holdings, '-----')
-
-    
     def generate_stats(self, test: bool = True) -> dict: 
         stats = {
             'final_value': self.value[-1],
@@ -146,8 +129,6 @@ class Bot:
 
 b = Bot(0.8, test=False)
 b.run(df, slippage=False)
-
-#trades
 
 #buy and sell lists
 buys = [i[1:] for i in b.trades if i[0] == 1]
