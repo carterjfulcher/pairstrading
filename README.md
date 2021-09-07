@@ -1,7 +1,6 @@
 # Pairs Trading
 
-This is the code that goes along with a live stream. More info in `goals.txt`
-
+This code was written as part of a livestream.
 
 Live Stream Part 1
 ----
