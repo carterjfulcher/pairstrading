@@ -46,6 +46,8 @@ df[f"{stocks[0]}_change"] = df1['4. close'].pct_change()
 df[f"{stocks[1]}_change"] = df2['4. close'].pct_change()
 print(df.head())
 df = df.dropna()
+df = df.loc[0:800]
+
 
 class Bot:
     def __init__(self, corr: float, test: bool = True, cash: float = 10000):
@@ -128,7 +130,7 @@ class Bot:
 
 
 b = Bot(0.8, test=False)
-b.run(df, slippage=False)
+b.run(df, slippage=True)
 
 #buy and sell lists
 buys = [i[1:] for i in b.trades if i[0] == 1]
@@ -141,13 +143,17 @@ fig, (ax1, ax2, ax3) = plt.subplots(3, 1)
 
 
 ax1.plot(df[stocks[1]])
+ax1.set_title("Stock Price ($)")
 ax1.scatter([i[0] for i in buys],[i[1] for i in buys] , color='g') #buys
 ax1.scatter([i[0] for i in sells],[i[1] for i in sells], color='r') #sells
 
 ax2.plot(df[f"{stocks[0]}_change"], color='b')
 ax2.plot(df[f"{stocks[1]}_change"], color='r')
+ax2.set_title("Pair Discrepancy (%)")
 
 ax3.plot(b.value)
+ax3.set_title("Portfolio Value ($)")
+
 
 plt.show()
 
